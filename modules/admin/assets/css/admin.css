@@ -1,0 +1,9 @@
+#ajax_orders_container table tbody tr {
+    transition-duration: 0.12s;
+}
+
+#ajax_orders_container table tbody tr:hover {
+    cursor: pointer;
+    background-color: #eeeeee;
+    text-decoration: underline;
+}

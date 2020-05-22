@@ -1,0 +1,129 @@
+/*
+ * Breadcrumbs
+ * -----------
+ */
+
+#back_breadcrumb {
+    margin-right: 30px;
+    /*float: right;*/
+}
+
+
+/*
+ * Left Menu
+ * ---------
+ */
+.sidebar .nav ul.inline {
+    display: none;
+}
+
+.sidebar .nav ul.inline > li > a {
+    color: #333;
+    background-color: #fff;
+    padding-left: 40px;
+}
+
+.sidebar .nav ul.inline > li > a.active {
+    color: #a56006;
+    font-weight: 600;
+}
+
+
+.sidebar .nav ul.inline > li > a:hover {
+    color: #a56006;
+}
+
+
+
+.sidebar .nav-pills > li > a:hover{
+    background-color: #f9ddb4;
+}
+
+.sidebar .nav-pills > li.active > a,
+.sidebar .nav-pills > li.active > a:hover,
+.sidebar .nav-pills > li.active > a:focus {
+    background-color: #ddd;
+    background-color: #f9ddb4;
+    color: #333;
+}
+
+
+/* product_detail page
+ ------------ */
+
+tr#add_button a.btn-success
+{
+    /*color: #fff;*/
+    background-color: #558e41d1;
+    border-color: #558e41d1;
+}
+tr#add_button a.btn-success:hover
+{
+    background-color: rgba(69, 114, 52, 0.82);
+    border-color: rgba(69, 114, 52, 0.82);
+}
+
+
+/* Cart page
+ ------------ */
+
+#cart_nav {
+    margin: 10px 0 30px 0;
+    /*background-color: #f5f5f5;*/
+}
+
+#cart_nav h3
+{
+    margin: 6px 0 8px 0;
+}
+
+
+/* cart menu */
+#cart_nav .nav-pills > li.active > a
+{
+    background-color: #558e41d1;
+    border-color: #444;
+}
+#cart_nav .nav-pills > li.active > a:hover {
+    background-color: rgba(69, 114, 52, 0.82);
+}
+
+/* next button */
+#cart_show a.btn-primary.pull-right
+{
+    background-color: #558e41d1;
+    border-color: #558e41d1;
+}
+#cart_show a.btn-primary.pull-right:hover
+{
+    background-color: rgba(69, 114, 52, 0.82);
+    border-color: rgba(69, 114, 52, 0.82);
+}
+
+.btn-green {
+    color: #fff;
+    background-color: #558e41d1 !important;
+    border-color: #558e41d1 !important;
+}
+.btn-green:hover {
+    color: #fff;
+    background-color: rgba(69, 114, 52, 0.82) !important;
+    border-color: rgba(69, 114, 52, 0.82) !important;
+}
+
+
+/* bug-fix */
+.product-item .caption h5 {
+    margin-bottom: 30px;
+}
+
+
+
+/* admin account left line */
+
+.admin-account ul > #your-account {
+    border-right: none;
+}
+
+
+
