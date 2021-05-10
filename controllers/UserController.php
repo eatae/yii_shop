@@ -28,12 +28,14 @@ class UserController extends Controller
 
     public function beforeAction($action)
     {
+        $top_button = $action->id;
         /* get all roots */
         $this->category_roots = Category::find()->roots()->all();
         /* set category_roots in main for draw topMenu */
         $this->view->params['category_roots'] = $this->category_roots;
         /* set quantity products */
         $this->view->params['cart_quantity'] = Product::getQuantityWord($this->getCart());
+        $this->view->params['active_buttons'] = $this->setTopMenuButtons( $this->category_roots, $top_button );
 
         return parent::beforeAction($action);
     }
@@ -83,6 +85,31 @@ class UserController extends Controller
     {
         Yii::$app->user->logout(false);
         return $this->redirect( /*(Yii::$app->request->referrer) ?:*/ Yii::$app->getHomeUrl());
+    }
+
+
+    /**
+     * Fill top menu
+     *
+     * @param array $category_roots
+     * @param string $top_button
+     * @return array
+     */
+    protected function setTopMenuButtons(array $category_roots, $top_button = null)
+    {
+        $top_button =  $top_button ?: 'index';
+        $activeButtons = [ 'index' => '', 'about' => '', 'contact' => ''];
+        /* add Category button in menu */
+        if ( !empty($category_roots) ) {
+            foreach ($category_roots as $root) {
+                $activeButtons[$root->name] = '';
+            }
+        }
+        /* set class 'active' for button */
+        if ( array_key_exists($top_button, $activeButtons) ) {
+            $activeButtons[$top_button] = 'active';
+        }
+        return $activeButtons;
     }
 
 

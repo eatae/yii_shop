@@ -54,7 +54,7 @@ class LeftCartWidget extends Widget
                         <div class="col-sm-4 col-xs-6 text-right" id="left_cart_cost"><?= sprintf( "%.2f",($this->cart->cost) ) ?></div>
                     </div>
                 </li>
-                <li>
+                <!--<li>
                     <div class="row">
                         <div class="col-sm-6 col-xs-6">
                             <a class="btn btn-default" href="cart.html">Корзина</a>
@@ -63,7 +63,7 @@ class LeftCartWidget extends Widget
                             <a class="btn btn-primary" href="login.html">Войти</a>
                         </div>
                     </div>
-                </li>
+                </li>-->
             </ul>
         </div>
         <?

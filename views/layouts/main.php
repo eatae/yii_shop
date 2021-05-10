@@ -25,6 +25,8 @@ ltAsset::register($this);
 
 /* Params
 ----------*/
+
+//var_dump($this->params['active_buttons']); exit();
 $activeButtons = $this->params['active_buttons'];
 $category_roots = $this->params['category_roots'];
 $cart_quantity = $this->params['cart_quantity'];
@@ -172,10 +174,10 @@ if (null != $user) {
                     <li class="<?= $activeButtons['contact'] ?>">
                         <?= Html::a('Контакты', ['site/contact']) ?>
                     </li>
-                    <!-- Contact -->
-                    <li>
-                        <?= Html::a('TEST', ['test/index']) ?>
-                    </li>
+                    <!-- TEST -->
+                    <!--<li>
+                        <?/*= Html::a('TEST', ['test/index']) */?>
+                    </li>-->
                 </ul>
             </div>
         </div>

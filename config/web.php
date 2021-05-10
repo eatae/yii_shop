@@ -1,5 +1,8 @@
 <?php
 
+/* Include debug functions */
+require_once(__DIR__.'/functions.php');
+
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/_db.php';
 $smtp = require __DIR__ . '/_smtp.php';

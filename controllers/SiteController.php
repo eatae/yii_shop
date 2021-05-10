@@ -120,6 +120,8 @@ class SiteController extends Controller
             ->limit(4)
             ->all();
 
+        //var_dump($hit_products); exit();
+
         $new_products = Product::find()
             ->where(['new'=> 1])
             ->orderBy(new Expression('rand()'))

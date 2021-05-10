@@ -8,6 +8,8 @@
 
 namespace app\controllers;
 
+use app\models\Category;
+use app\models\Product;
 use Yii;
 use yii\web\Controller;
 use app\models\Customer;
@@ -21,14 +23,31 @@ class OrderController extends Controller
 {
     use DataLayoutTrait;
 
+
+    public function beforeAction($action)
+    {
+        $top_button = $action->id;
+        /* get all roots */
+        $this->category_roots = Category::find()->roots()->all();
+        /* set category_roots in main for draw topMenu */
+        $this->view->params['category_roots'] = $this->category_roots;
+        /* set quantity products */
+        $this->view->params['cart_quantity'] = Product::getQuantityWord($this->getCart());
+        $this->view->params['active_buttons'] = $this->setTopMenuButtons( $this->category_roots, $top_button );
+
+        return parent::beforeAction($action);
+    }
+
     /**
      * Show customer form
+     *
      * @return string
      */
     public function actionCustomerForm()
     {
         $formModel = new CustomerForm();
         $user = Yii::$app->user->identity;
+
         $cart = new ShoppingCart();
         try {
             if ($cart->isEmpty) {
@@ -45,20 +64,35 @@ class OrderController extends Controller
 
     /**
      * Create order
+     *
      * @return string
+     * @throws \yii\db\Exception
      */
     public function actionCreateOrder()
     {
         $cart = new ShoppingCart();
         $user = Yii::$app->user->identity;
         $formModel = new CustomerForm();
-        $customer_id = ($user) ? $user->customer->id : null;
 
         $transaction = Yii::$app->db->beginTransaction();
 
+        //dd($customer_id);
+        /* тут оказия если пользователя нет */
+        if (!$user) {
+            return Yii::$app->runAction('site/index');
+        }
+        /* и тут оказия если customer нет */
+        if ( !isset($user->customer->id)) {
+            return Yii::$app->runAction('site/index');
+        }
+
+
         try {
-            if ( $formModel->load(Yii::$app->request->post()) && $customer = $formModel->fillModel( $customer_id )) {
+            if ( $formModel->load(Yii::$app->request->post()) && $customer = $formModel->fillModel( $user->customer->id)) {
                 /* set order */
+
+
+                dd($customer);
                 $order = Order::setOrder($customer, $cart);
                 /* set order-items */
                 Order::setOrderItems($order, $cart);
@@ -105,6 +139,29 @@ class OrderController extends Controller
 
 
 
+    /**
+     * Fill top menu
+     *
+     * @param array $category_roots
+     * @param string $top_button
+     * @return array
+     */
+    protected function setTopMenuButtons(array $category_roots, $top_button = null)
+    {
+        $top_button =  $top_button ?: 'index';
+        $activeButtons = [ 'index' => '', 'about' => '', 'contact' => ''];
+        /* add Category button in menu */
+        if ( !empty($category_roots) ) {
+            foreach ($category_roots as $root) {
+                $activeButtons[$root->name] = '';
+            }
+        }
+        /* set class 'active' for button */
+        if ( array_key_exists($top_button, $activeButtons) ) {
+            $activeButtons[$top_button] = 'active';
+        }
+        return $activeButtons;
+    }
 
 
 

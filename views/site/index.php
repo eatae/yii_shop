@@ -8,7 +8,7 @@ use yii\helpers\Url;
 $this->title = 'Главная';
 
 
-//var_dump($new_products);
+//var_dump($hit_products);
 ?>
 <!-- begin:home-slider -->
 <div id="home-slider" class="carousel slide" data-ride="carousel">
@@ -81,7 +81,9 @@ $this->title = 'Главная';
                 <? } ?>
             </div>
         </div>
-    <?  if ($cnt >= 4) { break; }
+    <? if ($cnt >= 4) {
+        break;
+    }
     } // end foreach ?>
 
 <!--    <div class="col-md-3 col-sm-3 col-xs-6">-->
@@ -200,6 +202,7 @@ $this->title = 'Главная';
         </div>
     </div>
 </div>
+
 
 <div class="row product-container">
 
